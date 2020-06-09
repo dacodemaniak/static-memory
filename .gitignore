@@ -1,0 +1,5 @@
+# Specific node
+node_modules
+
+# Build and outputs
+dist
