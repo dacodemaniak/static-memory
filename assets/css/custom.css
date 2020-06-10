@@ -79,3 +79,35 @@ nav#main-navbar ul li a {
 nav#main-navbar ul li:hover {
     transform: scale(2.0);
 }
+
+/**
+* Cards designing
+**/
+#game-platform {
+    display: flex;
+}
+#platform {
+    display: flex;
+}
+.card {
+    height: 100px;
+    width: 100px;
+    background-image: url("./../images/cards.png");
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+/**
+* Attribute selector
+**/
+[data-rel="card-1"] {
+    background-position: 0 0;
+}
+
+[data-rel="card-2"] {
+    background-position: 0 -100px;
+}
