@@ -5,9 +5,10 @@
  */
 import $ from 'jquery'
 import CardEventManager from './card-event-manager'
-
+import Platform from './platform'
 class Main {
     constructor() {
+        const gamePlatform = new Platform()
         const cardEventManager = new CardEventManager()
     }
 }

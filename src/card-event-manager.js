@@ -18,6 +18,7 @@ export default class CardEventManager {
                 const element = $(event.target) // Cible de l'événement...
                 if (element.hasClass('hidden-face')) {
                     element.removeClass('hidden-face')
+                    console.log(`Click on ${element.attr('data-rel')}`)
                 } else {
                     element.addClass('hidden-face')
                 }

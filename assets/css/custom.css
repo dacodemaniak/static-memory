@@ -87,7 +87,7 @@ nav#main-navbar ul li:hover {
     display: flex;
 }
 #platform {
-    display: flex;
+    /*display: flex;*/
 }
 .card {
     height: 100px;
@@ -115,4 +115,29 @@ nav#main-navbar ul li:hover {
 
 [data-rel="card-2"] {
     background-position: 0 -100px;
+}
+
+/**
+* App loader
+**/
+.outer-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, .5);
+}
+
+.outer-loader.hidden {
+    display: none;
+}
+
+.inner-loader {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
 }
