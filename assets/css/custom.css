@@ -95,12 +95,17 @@ nav#main-navbar ul li:hover {
     background-image: url("./../images/cards.png");
     background-repeat: no-repeat;
     box-sizing: border-box;
+    margin: .3em .3em;
 }
 
 .card:hover {
     cursor: pointer;
 }
 
+.card.hidden-face {
+    background-image: none;
+    background-color: rgb(128, 128, 128);
+}
 /**
 * Attribute selector
 **/

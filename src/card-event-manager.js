@@ -3,22 +3,25 @@
  * @author Aélion - June 2020
  * @abstract Sets event manager for cards in the platform
  */
+
+ import $ from 'jquery'
+
 export default class CardEventManager {
     constructor() {
         this._click() // Invoke click handler on cards
     }
 
     _click() {
-        const cards = document.querySelectorAll('.card');
-        
-        cards.forEach((card) => {
-            card.addEventListener(
-                'click',
-                () => {
-                    console.log('Some card was clicked')
+        $('.card').on(
+            'click',
+            (event) => {
+                const element = $(event.target) // Cible de l'événement...
+                if (element.hasClass('hidden-face')) {
+                    element.removeClass('hidden-face')
+                } else {
+                    element.addClass('hidden-face')
                 }
-            )
-        })
-
+            }
+        )
     }
 }

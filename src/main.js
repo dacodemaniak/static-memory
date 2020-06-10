@@ -3,7 +3,7 @@
  * @author Aélion - June 2020
  * @abstract Entry point of the memory game
  */
-
+import $ from 'jquery'
 import CardEventManager from './card-event-manager'
 
 class Main {
@@ -13,9 +13,6 @@ class Main {
 }
 
 // Load the application
-document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-        new Main()
-    }
-)
+$(document).ready(() => {
+    new Main()
+})
