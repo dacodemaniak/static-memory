@@ -1,0 +1,16 @@
+/**
+* normalize.css
+*   Harmonize all user agent styles
+*/
+
+body {
+    display: block;
+    margin: 0.5em;
+}
+
+a:link {
+    color: rgb(20, 10, 200);
+}
+a:visited {
+    color: rgb(20, 50, 200);
+}
