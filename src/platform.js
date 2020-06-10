@@ -8,15 +8,15 @@ import $ from 'jquery'
 export default class Platform {
     constructor() {
         this._platform = $('#platform') // document.getElementById('platform')
+        this._cards = []; // Sequential cards
+        this._createCards()
+        this._randomCards = []; // Shuffled cards
         this._shuffleCard()
+        this._displayCards()
     }
 
-    _shuffleCard() {
-        let row = $('<div>');
-        row.css('display', 'flex');
-        let breakRow = 0 // To manage breaking at 6 cards
+    _createCards() {
         let oddOrEven = 'odd'
-
         for (let i = 0; i < 36; i++) {
             let offset;
             if (i > 17) {
@@ -25,8 +25,7 @@ export default class Platform {
             } else {
                 offset = i
             }
-
-            
+            // Create a card in DOM
             const card = $('<div>')
             card
                 .addClass('card')
@@ -34,7 +33,34 @@ export default class Platform {
                 .attr('data-rel', 'card-' + offset)
                 .attr('data-value', oddOrEven)
                 .css('background-position', '0 -' + offset * 100 + 'px')
-            row.append(card);
+            // Add card Element to array
+            this._cards.push(card) // Add a card to sequential array
+        }        
+    }
+    _shuffleCard() {
+        let tabLength = 36
+        
+        for (let i = 0; i < 36; i++) {
+            // Get random number in a range
+            const random = Math.floor(Math.random() * tabLength)
+            // Move random indice to target array
+            this._randomCards.push(this._cards[random])
+            // Remove from source array, the moved element
+            this._cards.splice(random, 1)
+            console.log(`Cards length : ${this._cards.length}`)
+            // Don't forget to decrement the tabLength
+            tabLength--;
+        }
+        console.log(`Cards length : ${this._cards.length} | Random cards length : ${this._randomCards.length}`)
+    }
+
+    _displayCards() {
+        let row = $('<div>');
+        row.css('display', 'flex');
+        let breakRow = 0 // To manage breaking at 6 cards
+
+        for (let i = 0; i < 36; i++) {
+            row.append(this._randomCards[i]);
 
             // Need to break with another row
             if (breakRow === 5) {
@@ -50,3 +76,4 @@ export default class Platform {
         )
     }
 }
+console.log(`${JSON.stringify(this._cards)}`)
