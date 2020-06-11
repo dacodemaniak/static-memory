@@ -1,0 +1,29 @@
+.outer-card {
+    margin-bottom: .1em;
+
+    .m-card {
+        height: 100px;
+        width: 100px;
+        background-image: url("#{$imagePath}/cards.png");
+        background-repeat: no-repeat;
+        box-sizing: border-box;
+        padding: .1em .1em;
+    
+        &:hover {
+            cursor: pointer;
+        }
+        &.hidden-face {
+            background-image: none;
+            background-color: rgb(128, 128, 128);
+        }
+    }
+    
+    .freezed-card {
+        height: 100px;
+        width: 100px;
+        background-image: url("#{$imagePath}/cards.png");
+        background-repeat: no-repeat;
+        box-sizing: border-box;
+        padding: .1em .1em;
+    }
+}

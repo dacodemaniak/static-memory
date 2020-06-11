@@ -4,6 +4,51 @@
 /**
 * Sets some variables
 **/
+/**
+* Sets the image path
+**/
+.outer-card {
+  margin-bottom: .1em; }
+  .outer-card .m-card {
+    height: 100px;
+    width: 100px;
+    background-image: url("/assets/images/cards.png");
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: .1em .1em; }
+    .outer-card .m-card:hover {
+      cursor: pointer; }
+    .outer-card .m-card.hidden-face {
+      background-image: none;
+      background-color: gray; }
+  .outer-card .freezed-card {
+    height: 100px;
+    width: 100px;
+    background-image: url("/assets/images/cards.png");
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: .1em .1em; }
+
+/**
+* Game loader overlay
+**/
+.outer-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.5); }
+  .outer-loader.hidden {
+    display: none; }
+  .outer-loader .inner-loader {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%); }
+
 .materialize-red {
   background-color: #e51c23 !important; }
 

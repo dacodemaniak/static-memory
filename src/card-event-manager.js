@@ -13,9 +13,11 @@ export default class CardEventManager {
     }
 
     _click() {
-        $('.card').on(
+        $('#platform').on(
             'click',
+            '.m-card', // Event delegation needed to perform actions
             (event) => {
+                console.log('Detect click on card')
                 const element = $(event.target) // Cible de l'événement...
                 if (element.hasClass('hidden-face')) {
                     console.log(`Reveal ${element.attr('data-rel')}`)
@@ -48,10 +50,10 @@ export default class CardEventManager {
                 // Pair was found... So freeze cards
                 element
                     .addClass('freezed-card')
-                    .removeClass('card')
+                    .removeClass('m-card')
                 this._playingCard
                     .addClass('freezed-card')
-                    .removeClass('card')
+                    .removeClass('m-card')
                 // Sets played card as null, to make another pick
                 this._playingCard = null;
             } else {

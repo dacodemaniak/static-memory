@@ -28,7 +28,7 @@ export default class Platform {
             // Create a card in DOM
             const card = $('<div>')
             card
-                .addClass('card')
+                .addClass('m-card')
                 .addClass('hidden-face')
                 .attr('data-rel', 'card-' + offset)
                 .attr('data-value', oddOrEven)
@@ -54,23 +54,22 @@ export default class Platform {
     }
 
     _displayCards() {
-        let row = $('<div>');
-        row.css('display', 'flex');
-        let breakRow = 0 // To manage breaking at 6 cards
+        let row = $('<div>')
+            .addClass('row');
 
         for (let i = 0; i < 36; i++) {
-            row.append(this._randomCards[i]);
-
-            // Need to break with another row
-            if (breakRow === 5) {
-                this._platform.append(row);
-                row = $('<div>').css('display', 'flex') // Create a new row
-                breakRow = -1
-            }
-            breakRow++
+            const outerCard = $('<div>')
+                .addClass('outer-card')
+                .addClass('col')
+                .addClass('s2')
+                .append(this._randomCards[i])
+            row.append(outerCard);
         }
         setTimeout(
-            () => { $('.outer-loader').addClass('hidden') },
+            () => { 
+                $('.outer-loader').addClass('hidden')
+                this._platform.append(row);
+            },
             500
         )
     }

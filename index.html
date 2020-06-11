@@ -8,32 +8,35 @@
 
         <!-- Load compiled SASS -->
         <link href="./assets/css/main.css" rel="stylesheet">
-        
+
         <!-- Importation le javascript -->
         <script src="./dist/main.js"></script>
     </head>
 
     <body>
-        <div id="main-container">
+        <!-- Main container for our page, to maintain fluidity -->
+        <div id="main-container" class="container">
             <!-- Main header of the page -->
-            <header>
+            <header class="row">
                 <h1 class="my-upper">Fabulous Memory Game</h1>
             </header>
 
             <!-- Navigation toolbar -->
-            <nav id="main-navbar">
-                <ul>
-                    <li>
-                        <a class="my-upper bold" role="button" href="#" title="New Memory Game">New game</a>
-                    </li>
-                    <li>
-                        <a class="my-upper bold" role="button" href="#" title="Best players">Best players</a>
-                    </li>
-                </ul>
+            <nav id="main-navbar" class="row">
+                <div class="nav-wrapper">
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a class="my-upper bold" role="button" href="#" title="New Memory Game">New game</a>
+                        </li>
+                        <li>
+                            <a class="my-upper bold" role="button" href="#" title="Best players">Best players</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
 
-            <section id="game-platform">
-                <article>
+            <section id="game-platform" class="row">
+                <article class="col s3">
                     <header>
                         <h2>Memory Game Rules</h2>
                     </header>
@@ -47,10 +50,10 @@
                 </article>
                 
                 <!-- Platform of 28 cards -->
-                <div id="platform">
+                <div id="platform" class="col s9">
                 </div>
 
-                <div>
+                <div class="col s9 offset-s3">
                     <span class="bold">Time remaining</span> :
                     <progress max="100" value="0" class="flex-container"></progress>
                 </div>
