@@ -47,11 +47,10 @@ export default class Platform {
             this._randomCards.push(this._cards[random])
             // Remove from source array, the moved element
             this._cards.splice(random, 1)
-            console.log(`Cards length : ${this._cards.length}`)
+            
             // Don't forget to decrement the tabLength
             tabLength--;
         }
-        console.log(`Cards length : ${this._cards.length} | Random cards length : ${this._randomCards.length}`)
     }
 
     _displayCards() {
@@ -72,8 +71,7 @@ export default class Platform {
         }
         setTimeout(
             () => { $('.outer-loader').addClass('hidden') },
-            1000
+            500
         )
     }
 }
-console.log(`${JSON.stringify(this._cards)}`)
