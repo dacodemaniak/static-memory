@@ -157,9 +157,17 @@ nav#main-navbar ul li:hover {
 .flip-in {
     animation-name: flip-in;
     animation-duration: .5s;
-    animation-delay: .5s;
+    animation-delay: .1s;
     animation-fill-mode: backwards;
 }
+
+/**
+* Styling progress bar
+**/
+progress {
+    display: block;
+}
+
 /**
 * Flip cards animation definition
 **/
