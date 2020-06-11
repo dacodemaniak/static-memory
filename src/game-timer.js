@@ -28,7 +28,7 @@ export default class GameTimer {
         this._endTime.add(this._maxTime, 'minutes')
 
         // Sets the max value of the progress bar in seconds
-        this._progress.attr('max', 60 * 60 * this._maxTime)
+        this._progress.attr('max', 60 * this._maxTime)
         this._progress.attr('value', this._elapsedTime)
 
         // Sets the progress animation progression
@@ -39,14 +39,14 @@ export default class GameTimer {
     stop() {
         this._timer.clearInterval()
         this._elapsedTime = 0
-        
+
     }
     _init() {
         this._timer = setInterval(
             () => {
                 this._elapsedTime++;
                 this._progress.attr('value', this._elapsedTime)
-                if (this._elapsedTime > (60 * 60 * this._maxTime)) {
+                if (this._elapsedTime > (60 * this._maxTime)) {
                     console.log('You loose the game');
 
                     // Game was loosed...
