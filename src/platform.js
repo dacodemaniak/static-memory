@@ -5,14 +5,30 @@
  */
 import $ from 'jquery'
 
+// Import Card Event Manager
+import CardEventManager from './card-event-manager'
+
+// Import the timer class
+import GameTimer from './game-timer'
+
 export default class Platform {
     constructor() {
         this._platform = $('#platform') // document.getElementById('platform')
         this._cards = []; // Sequential cards
         this._createCards()
         this._randomCards = []; // Shuffled cards
+
+        // Instanciate a new Timer
+        this._timer = new GameTimer()
+
+        // EventManager attribute (as DI)
+        this._cardEventManager = null
+    }
+
+    start() {
         this._shuffleCard()
         this._displayCards()
+        this._cardEventManager = new CardEventManager(this._timer)
     }
 
     _createCards() {
@@ -39,18 +55,20 @@ export default class Platform {
     }
     _shuffleCard() {
         let tabLength = 36
-        
+        const saveCards = [];
         for (let i = 0; i < 36; i++) {
             // Get random number in a range
             const random = Math.floor(Math.random() * tabLength)
             // Move random indice to target array
             this._randomCards.push(this._cards[random])
             // Remove from source array, the moved element
-            this._cards.splice(random, 1)
+            saveCards.push(this._cards.splice(random, 1))
             
             // Don't forget to decrement the tabLength
             tabLength--;
         }
+        // Restore cards after shuffling
+        this._cards = saveCards;
     }
 
     _displayCards() {
@@ -69,6 +87,8 @@ export default class Platform {
             () => { 
                 $('.outer-loader').addClass('hidden')
                 this._platform.append(row);
+                this._timer.start()
+
             },
             500
         )

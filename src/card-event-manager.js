@@ -7,9 +7,12 @@
  import $ from 'jquery'
 
 export default class CardEventManager {
-    constructor() {
+    constructor(timer) {
         this._click() // Invoke click handler on cards
         this._playingCard = null; // Map for played cards
+        this._pairs = 0 // Nombre de paires trouvées
+
+        this._timer = timer; // Instance of Timer to clear game if won
     }
 
     _click() {
@@ -48,6 +51,7 @@ export default class CardEventManager {
             // Some cards was played, try to know if both are same
             if (element.attr('data-rel') === this._playingCard.attr('data-rel')) {
                 // Pair was found... So freeze cards
+                this._pairs++;
                 element
                     .addClass('freezed-card')
                     .removeClass('m-card')
@@ -56,6 +60,12 @@ export default class CardEventManager {
                     .removeClass('m-card')
                 // Sets played card as null, to make another pick
                 this._playingCard = null;
+
+                if (this._pairs === 18) {
+                    // Game is won
+                    this._timer.stop() // Stop the timer
+                    // Play a congrats
+                }
             } else {
                 // Turn off cards after delay
                 setTimeout(

@@ -27,6 +27,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "materialize-css": "^1.0.0-rc.2"
+    "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.26.0"
   }
 }

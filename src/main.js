@@ -4,7 +4,6 @@
  * @abstract Entry point of the memory game
  */
 import $ from 'jquery'
-import CardEventManager from './card-event-manager'
 import Platform from './platform'
 
 // Load SCSS at transpile time
@@ -12,12 +11,30 @@ import css from './scss/main.scss'
 
 class Main {
     constructor() {
-        const gamePlatform = new Platform()
-        const cardEventManager = new CardEventManager()
+        this.gamePlatform = new Platform()
+    }
+
+    start() {
+        this.gamePlatform.start()
+
+        $('[newGame]').on(
+            'click',
+            (event) => {
+                event.preventDefault()
+                this.start()
+            }
+        )
     }
 }
 
 // Load the application
+let app = null;
+
 $(document).ready(() => {
-    new Main()
+    app = new Main()
+    app.start()
 })
+
+const start = () => {
+    app.start()
+}
