@@ -17,10 +17,22 @@ export default class CardEventManager {
             (event) => {
                 const element = $(event.target) // Cible de l'événement...
                 if (element.hasClass('hidden-face')) {
-                    element.removeClass('hidden-face')
-                    console.log(`Click on ${element.attr('data-rel')}`)
+                    console.log(`Reveal ${element.attr('data-rel')}`)
+                    element
+                        .addClass('flip-out')
+                    setTimeout(
+                        () => {
+                            element
+                                .removeClass('hidden-face')
+                                .removeClass('flip-out')
+                                .addClass('flip-in')
+                        },
+                        500
+                    )
                 } else {
-                    element.addClass('hidden-face')
+                    element
+                        .addClass('hidden-face')
+                        .removeClass('flip-in')
                 }
             }
         )
