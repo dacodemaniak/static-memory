@@ -6,6 +6,10 @@
 import $ from 'jquery'
 import CardEventManager from './card-event-manager'
 import Platform from './platform'
+
+// Load SCSS at transpile time
+import css from './scss/main.scss'
+
 class Main {
     constructor() {
         const gamePlatform = new Platform()

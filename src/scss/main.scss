@@ -1,0 +1,12 @@
+/**
+* Main styles
+**/
+@import './variables.scss';
+@import '~materialize-css/sass/materialize.scss';
+
+/**
+* Globals
+**/
+body {
+    color: $primary-color;
+}
