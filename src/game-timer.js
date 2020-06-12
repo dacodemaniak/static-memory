@@ -53,7 +53,9 @@ export default class GameTimer {
                     clearInterval(this._timer) // Stop the interval manager
                     
                     // Redraw all cards
-                    $('[class$="card"]').addClass('freezed-card')
+                    $('.card')
+                        .removeClass('card')
+                        .addClass('freezed-card')
 
                     // Send a toast to the user
                 }
