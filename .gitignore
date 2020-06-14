@@ -1,5 +1,10 @@
 # Specific node
-node_modules
+www/web.memory/node_modules
 
 # Build and outputs
-dist
+www/web.memory/dist
+
+# PHP specifics
+www/api.memory/vendor
+www/api.memory/.env
+
