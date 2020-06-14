@@ -1,19 +1,23 @@
 {
-    "name": "memory/backend",
-    "description": "Backend PHP to store and retrieve Hall of Fame",
-    "type": "project",
-    "require": {
-        "altorouter/altorouter": "^2.0",
-        "doctrine/orm": "^2.7",
-        "doctrine/annotations": "^1.10",
-        "vlucas/phpdotenv": "^5.0"
-    },
-    "license": "ISC",
-    "authors": [
-        {
-            "name": "Jean-Luc Aubert",
-            "email": "jean-luc.a@ideafactory.fr"
-        }
-    ],
-    "minimum-stability": "stable"
+	"name" : "memory/backend",
+	"description" : "Backend PHP to store and retrieve Hall of Fame",
+	"type" : "project",
+	"require" : {
+		"altorouter/altorouter" : "^2.0",
+		"doctrine/orm" : "^2.7",
+		"doctrine/annotations" : "^1.10",
+		"vlucas/phpdotenv" : "^5.0"
+	},
+	"license" : "ISC",
+	"authors" : [{
+			"name" : "Jean-Luc Aubert",
+			"email" : "jean-luc.a@ideafactory.fr"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Memory\\": "src/"
+		}
+	},
+	"minimum-stability" : "stable"
 }
