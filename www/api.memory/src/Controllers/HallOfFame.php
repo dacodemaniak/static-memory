@@ -12,7 +12,8 @@ class HallOfFame
     
     /**
      * @AltoRoute(
-     *  name="/halloffame"
+     *  name="/halloffame",
+     *  method="GET"
      * )
      * 
      * Get all entries for the Hall of Fame entity
