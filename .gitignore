@@ -8,3 +8,8 @@ www/web.memory/dist
 www/api.memory/vendor
 www/api.memory/.env
 
+# MySQL datas
+datas
+
+# Logs
+logs

@@ -10,8 +10,8 @@ services:
         ports: 
             - 3306:3306
     webserver: 
-        image: bitnami/apache:latest
-        container_name: ${WEB_PROJECT_NAME}_webserver
+        image: webdevops/php-apache:7.3
+        container_name: ${API_PROJECT_NAME}_webserver
         volumes: 
             - ./www/web.memory:/var/www/vhosts/web.memory/htdocs
             - ./etc/apache2/web/sites-enabled:/etc/apache2/sites-enabled
