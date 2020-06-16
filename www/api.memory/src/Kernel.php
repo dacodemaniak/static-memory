@@ -12,6 +12,7 @@ namespace Memory;
 use Memory\Common\Config\Environment;
 use Memory\Common\Http\Request\Request;
 use Memory\Common\Reflection\RouteCollector;
+use Memory\Common\Http\Response\Response;
 
 use AltoRouter;
 
@@ -57,7 +58,7 @@ final class Kernel
             // Make an instance of the controller
             $controller = new $controllerName();
             // Invoke the correct controller method
-            $controller->invoke(
+            return $controller->invoke(
                 $controllerMethod,
                 array_values($params) // if ever params
             );

@@ -10,6 +10,8 @@ namespace Memory\Controllers;
  */
 
 use Memory\Common\Controller\Controller;
+use Memory\Common\Http\Response\Response;
+use Memory\Common\Http\Response\JsonResponse;
 
 class HallOfFame extends Controller {
 
@@ -26,9 +28,20 @@ class HallOfFame extends Controller {
      * Get all entries for the Hall of Fame entity
      * @todo change array return type to Response
      */
-    public function getAll(): array {
-        echo "HallOfFame::getAll() works!";
-        return [];
+    public function getAll(): Response {
+        
+        return new JsonResponse(
+            [
+                [
+                    "name" => "Jean-Luc",
+                    "time" => "00:07:53"
+                ],
+                [
+                    "name" => "Clélie",
+                    "time" => "00:08:03"
+                ],
+            ]
+        );
     }
     
     /**
@@ -37,8 +50,12 @@ class HallOfFame extends Controller {
      * @return array
      * @todo change array return type to Response
      */
-    public function add(): array {
-        return [];
+    public function add(): Response {
+        return new JsonResponse(
+            [
+                "message" => "Player was added"
+            ]
+        );
     }
     
     /**
@@ -49,8 +66,8 @@ class HallOfFame extends Controller {
      * 
      * @see Controller, CallableInterface
      */
-    public function invoke(string $method, array $args): void {
-        call_user_func_array([$this, $method], $args);
+    public function invoke(string $method, array $args): Response {
+        return call_user_func_array([$this, $method], $args);
     }
 }
 

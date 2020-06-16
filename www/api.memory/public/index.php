@@ -22,3 +22,4 @@ $kernel = new Kernel();
 $response = $kernel->handleRequest();
 
 // Finally send response to webserver
+$response->send();

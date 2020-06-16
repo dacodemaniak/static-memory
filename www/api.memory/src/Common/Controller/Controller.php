@@ -10,11 +10,12 @@ namespace Memory\Common\Controller;
  */
 
 use Memory\Common\Controller\CallableInterface;
+use Memory\Common\Http\Response\Response;
 
 abstract class Controller  implements CallableInterface {
 
     public function __construct() {}
 
-    abstract public function invoke(string $method, array $args): void;
+    abstract public function invoke(string $method, array $args): Response;
 }
 

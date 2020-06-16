@@ -55,19 +55,20 @@ final class RouteCollector {
                 
 
                 if ($reflectedMethod->hasAnnotation("AltoRoute")) {
-                    $this->routes = $reflectedMethod->getAnnotation("AltoRoute");
+                    $this->routes[] = $reflectedMethod->getAnnotation("AltoRoute");
                 }
                 // @todo Replace with NoRouteFoundException
 
             }
         }
         // Finally, build routes found
+        
         foreach($this->routes as $route) {
             $this->router->map(
-                $route->httpMethod,
-                $route->path,
-                $route->className . "#" . $route->classMethod,
-                $route->name
+                $route[0]->httpMethod,
+                $route[0]->path,
+                $route[0]->className . "#" . $route[0]->classMethod,
+                $route[0]->name
             );
         }
     }
