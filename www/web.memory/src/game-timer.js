@@ -8,9 +8,11 @@
 import * as moment from 'moment'
 import $ from 'jquery'
 
+import Toast from './toast'
+
 export default class GameTimer {
     constructor() {
-        this._maxTime = 10 // Max time to play, in minute
+        this._maxTime = 2 // Max time to play, in minute
         this._endTime = null;
         this._beginTime = null;
         this._elapsedTime = 0;
@@ -20,7 +22,7 @@ export default class GameTimer {
 
     start() {
         if (this._timer !== null) {
-            this._timer.clearInterval();
+            clearInterval(this._timer);
         }
 
         this._beginTime = moment();
@@ -36,11 +38,17 @@ export default class GameTimer {
         
     }
 
+    /**
+     * Stop progression
+     */
     stop() {
-        this._timer.clearInterval()
+        clearInterval(this._timer)
         this._elapsedTime = 0
 
     }
+    /**
+     * Initiate the timer... and animate progress bar
+     */
     _init() {
         this._timer = setInterval(
             () => {
@@ -48,16 +56,21 @@ export default class GameTimer {
                 this._progress.attr('value', this._elapsedTime)
                 if (this._elapsedTime > (60 * this._maxTime)) {
                     console.log('You loose the game');
-
+                    this._elapsedTime = 0
                     // Game was loosed...
-                    clearInterval(this._timer) // Stop the interval manager
+                    this.stop() // Stop the interval manager
                     
                     // Redraw all cards
-                    $('.card')
-                        .removeClass('card')
+                    $('.m-card')
+                        .removeClass('m-card')
                         .addClass('freezed-card')
 
                     // Send a toast to the user
+                    const toast = new Toast({
+                        content: 'Trop tard, vous avez perdu la partie !',
+                        type: 'loosed'
+                    })
+                    toast.show()
                 }
             },
             1000

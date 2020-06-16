@@ -1,0 +1,20 @@
+#platform {
+    position: relative;
+
+    .m-toast {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        margin: 0 auto;
+        &.loosed {
+            background-color: $toast-loose-color;
+        }
+
+        &.success {
+            background-color: $toast-win-color;
+        }
+    }  
+}

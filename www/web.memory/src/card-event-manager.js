@@ -5,6 +5,8 @@
  */
 
  import $ from 'jquery'
+import GameTimer from './game-timer'
+import Toast from './toast';
 
 export default class CardEventManager {
     constructor(timer) {
@@ -72,6 +74,10 @@ export default class CardEventManager {
                     // Game is won
                     this._timer.stop() // Stop the timer
                     // Play a congrats
+                    const toast = new Toast({
+                        content: "Bravo, vous avez gagné la partie !"
+                    })
+                    toast.show()
                 }
             } else {
                 // Turn off cards after delay
