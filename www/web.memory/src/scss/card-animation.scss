@@ -1,0 +1,34 @@
+/**
+* Card animation
+**/
+.flip-out {
+    animation-name: flip-out;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+.flip-in {
+    animation-name: flip-in;
+    animation-duration: .5s;
+    animation-delay: .1s;
+    animation-fill-mode: backwards;
+}
+
+/**
+* Flip cards animation definition
+**/
+@keyframes flip-out {
+   from {
+       opacity: 1;
+   }
+   to {
+       opacity: 0;
+   } 
+}
+@keyframes flip-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    } 
+ }

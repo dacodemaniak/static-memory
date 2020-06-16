@@ -5,6 +5,7 @@
 @import './card.scss';
 @import './loader.scss';
 @import './progress.scss';
+@import './card-animation.scss';
 
 @import '~materialize-css/sass/materialize.scss';
 
@@ -13,4 +14,11 @@
 **/
 body {
     color: $primary-color;
+}
+
+/**
+* Styling progress bar
+**/
+progress {
+    display: block;
 }

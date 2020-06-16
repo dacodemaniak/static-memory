@@ -15,13 +15,16 @@ export default class CardEventManager {
         this._timer = timer; // Instance of Timer to clear game if won
     }
 
+    /**
+     * Click event Manager using event delegation to manage cards reveal
+     */
     _click() {
         $('#platform').on(
             'click',
             '.m-card', // Event delegation needed to perform actions
             (event) => {
                 console.log('Detect click on card')
-                const element = $(event.target) // Cible de l'événement...
+                const element = $(event.target) // Real element clicked (The Card)
                 if (element.hasClass('hidden-face')) {
                     console.log(`Reveal ${element.attr('data-rel')}`)
                     this._addCard(element)
@@ -32,6 +35,10 @@ export default class CardEventManager {
         )
     }
 
+    /**
+     * Process Card reveal
+     * @param {*} element 
+     */
     _addCard(element) {
         // Reveal the element clicked
         element
@@ -91,6 +98,10 @@ export default class CardEventManager {
         }
     }
 
+    /**
+     * Process click back on a card
+     * @param {*} element 
+     */
     _removeCard(element) {
         element
             .addClass('hidden-face')

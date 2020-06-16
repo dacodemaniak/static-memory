@@ -14,9 +14,14 @@ class Main {
         this.gamePlatform = new Platform()
     }
 
+    /**
+     * Start a new game
+     * Fired on Menu item click or at application starts
+     */
     start() {
         this.gamePlatform.start()
 
+        // Sets and Event Handler on the Menu Item to load a new game
         $('[newGame]').on(
             'click',
             (event) => {
@@ -27,7 +32,7 @@ class Main {
     }
 }
 
-// Load the application
+// Load the application after DOM was complete
 let app = null;
 
 $(document).ready(() => {
@@ -35,6 +40,9 @@ $(document).ready(() => {
     app.start()
 })
 
+/**
+ * Anonymous function to fire a new game
+ */
 const start = () => {
     app.start()
 }
