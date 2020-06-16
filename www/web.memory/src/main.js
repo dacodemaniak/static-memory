@@ -4,6 +4,7 @@
  * @abstract Entry point of the memory game
  */
 import $ from 'jquery'
+import * as materialize from 'materialize-css'
 import Platform from './platform'
 
 // Load SCSS at transpile time
