@@ -39,7 +39,7 @@ class HallOfFame extends Controller {
                 [
                     "name" => "Clélie",
                     "time" => "00:08:03"
-                ],
+                ]
             ]
         );
     }
