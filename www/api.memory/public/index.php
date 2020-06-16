@@ -6,6 +6,9 @@
 * @abstract Entry point of the Memory backend
 */
 
+ini_set("display_errors", true);
+error_reporting(E_ALL);
+
 // Load composer class autoloader to avoid to have to require files manually
 require_once("./../vendor/autoload.php");
 
@@ -14,3 +17,8 @@ use Memory\Kernel;
 
 // Instanciate a "Kernel" class to load everything we need to process API
 $kernel = new Kernel();
+
+// Process the current request
+$response = $kernel->handleRequest();
+
+// Finally send response to webserver

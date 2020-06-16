@@ -56,10 +56,9 @@ final class RouteCollector {
 
                 if ($reflectedMethod->hasAnnotation("AltoRoute")) {
                     $this->routes = $reflectedMethod->getAnnotation("AltoRoute");
-                } else {
-                    // @todo Replace with NoRouteFoundException
-                    echo "Unable to find Route for " . $method->name . "<br>";
                 }
+                // @todo Replace with NoRouteFoundException
+
             }
         }
         // Finally, build routes found

@@ -12,8 +12,7 @@ use Memory\Common\Http\Request\HttpBody;
  * @abstract Extract client http request datas
  *
  */
-class Request
-{
+class Request {
     /**
      * Http Request instance
      * @var Request

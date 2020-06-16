@@ -42,5 +42,33 @@ final class Kernel
         $collector = new RouteCollector();
         $this->router = $collector->getRouter();
     }
+    
+    public function handleRequest(): ?Response {
+        $matchingRequest = $this->router->match();
+        
+        if ($matchingRequest) {
+            $parseTarget = explode("#", $matchingRequest["target"]);
+            $controllerName = $parseTarget[0]; // Target found
+            $controllerMethod = $parseTarget[1];
+            $params = $matchingRequest["params"]; // Params to pass to
+            $name = $matchingRequest["name"];
+            
+            
+            // Make an instance of the controller
+            $controller = new $controllerName();
+            // Invoke the correct controller method
+            $controller->invoke(
+                $controllerMethod,
+                array_values($params) // if ever params
+            );
+            
+        } else {
+            echo "No routes match the request!";
+        }
+        
+        return null;
+        
+        // @todo Throw an NoMatchingRouteFound
+    }
 }
 

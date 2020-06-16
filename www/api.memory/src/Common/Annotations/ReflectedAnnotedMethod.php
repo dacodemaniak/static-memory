@@ -41,6 +41,8 @@ final class ReflectedAnnotedMethod extends \ReflectionMethod {
         $this->className = $className;
         $this->classMethod = $classMethod;
         
+        $this->annotations = [];
+        
         $this->parse();
     }
     
