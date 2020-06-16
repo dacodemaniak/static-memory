@@ -23,8 +23,23 @@ final class ReflectedAnnotedMethod extends \ReflectionMethod {
      */
     private $annotations;
     
+    /**
+     * Current full qualified class name
+     * @var string
+     */
+    private $className;
+    
+    /**
+     * Current class method
+     * @var string
+     */
+    private $classMethod;
+    
     public function __construct(string $className, string $classMethod) {
         parent::__construct($className, $classMethod);
+        
+        $this->className = $className;
+        $this->classMethod = $classMethod;
         
         $this->parse();
     }
@@ -48,6 +63,19 @@ final class ReflectedAnnotedMethod extends \ReflectionMethod {
      */
     public function hasAnnotation(string $annotation): bool {
         return array_key_exists("@" . $annotation, $this->annotations);
+    }
+    
+    /**
+     * Get specific annotation content
+     * @param string $annotation
+     * @return array
+     */
+    public function getAnnotation(string $annotation): array {
+        if ($this->hasAnnotation($annotation)) {
+            return $this->annotations["@" . $annotation];
+        }
+        
+        return [];
     }
     
     private function parse(): void {
@@ -101,8 +129,17 @@ final class ReflectedAnnotedMethod extends \ReflectionMethod {
                 if ($char === "\n") continue;
                 
                 if ($char === ")") {
-                    // Content down
-                    $this->annotations[$annotation] = $content;
+                    // Content down => check if AnnotationClass exists for this annotation
+                    $className = "Memory\\Common\\Annotations\\" . trim(substr($annotation, 1));
+                    if (class_exists($className)) {
+                        $annotationObject = new $className($this->className, $this->classMethod);
+                        $annotationObject->parse($content);
+                        $this->annotations[$annotation][] = $annotationObject;
+                    } else {
+                        // @todo Replace to AnnotationClassNotFound Exception
+                        echo "Unable to find class " . $className . "<br>";
+                    }
+                    
                     $this->followContent = false;
                     $this->followAnnotation = false;
                     $annotation = "";

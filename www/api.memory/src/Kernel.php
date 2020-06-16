@@ -38,8 +38,9 @@ final class Kernel
         $this->request = Request::create(); // Process Client HttpRequest
         
         // Load routes from Controllers
-        $this->router = new \AltoRouter();
+        
         $collector = new RouteCollector();
+        $this->router = $collector->getRouter();
     }
 }
 

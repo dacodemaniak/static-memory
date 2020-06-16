@@ -51,9 +51,10 @@ class HttpBody implements HttpData
      */
     private function process(): void {
         $datas = json_decode(file_get_contents("php://input"), true);
-        
-        foreach($datas as $data => $value) {
-            $this->datas[$data] = $value;
+        if ($datas) {
+            foreach($datas as $data => $value) {
+                $this->datas[$data] = $value;
+            }
         }
     }
 }

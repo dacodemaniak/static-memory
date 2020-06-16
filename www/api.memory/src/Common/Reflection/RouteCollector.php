@@ -11,13 +11,34 @@ namespace Memory\Common\Reflection;
 use Memory\Common\Reflection\ControllerIterator;
 use Maslosoft\Addendum\Annotation;
 use Memory\Annotations\AltoRoute as AltoRoute;
-use Maslosoft\Addendum\Reflection\ReflectionAnnotatedClass;
-use Maslosoft\Addendum\Reflection\ReflectionAnnotatedMethod;
+
+use AltoRouter;
 
 final class RouteCollector {
-
+    /**
+     * Routes collection to feed AltoRouter class
+     * @var array
+     */
+    private $routes = [];
+    
+    /**
+     * Instance of AltoRouter
+     * @var \AltoRouter
+     */
+    private $router;
+    
     public function __construct() {
+        $this->router = new \AltoRouter();
+        
         $this->process();
+    }
+    
+    /**
+     * Return the Router hydrated from Controller annotations
+     * @return \AltoRouter
+     */
+    public function getRouter(): \AltoRouter {
+        return $this->router;
     }
     
     private function process(): void {
@@ -34,26 +55,22 @@ final class RouteCollector {
                 
 
                 if ($reflectedMethod->hasAnnotation("AltoRoute")) {
-                    echo "AltoRoute was found for " . $method->name . "<br>";
+                    $this->routes = $reflectedMethod->getAnnotation("AltoRoute");
                 } else {
+                    // @todo Replace with NoRouteFoundException
                     echo "Unable to find Route for " . $method->name . "<br>";
                 }
-                
-                /**
-                // Check for annotations for the method
-                $reflectionClassMethod = new ReflectionAnnotatedMethod($controller["class"], $method->name);
-                
-                var_dump($reflectionClassMethod->getAllAnnotations());
-                
-                if ($reflectionClassMethod->hasAnnotation("AltoRoute")) {
-                    var_dump($reflectionClassMethod->getAnnotation("AltoRoute"));
-                } else {
-                    echo "No route found for " . $method->name . " in " . $controller["class"] . "<br>";
-                }
-                **/
             }
         }
-        
+        // Finally, build routes found
+        foreach($this->routes as $route) {
+            $this->router->map(
+                $route->httpMethod,
+                $route->path,
+                $route->className . "#" . $route->classMethod,
+                $route->name
+            );
+        }
     }
 }
 
