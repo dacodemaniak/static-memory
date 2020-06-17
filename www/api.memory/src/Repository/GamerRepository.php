@@ -21,6 +21,11 @@ class GamerRepository extends EntityRepository
         parent::__construct($em, $class);
     }
     
+    /**
+     * Get a gamer from his ID (sample purpose only)
+     * @param int $id
+     * @return unknown
+     */
     public function findById(int $id) {
         return $this->find($id);
     }

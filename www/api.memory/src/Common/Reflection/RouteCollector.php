@@ -65,7 +65,7 @@ final class RouteCollector {
         
         foreach($this->routes as $route) {
             $this->router->map(
-                $route[0]->httpMethod,
+                $route[0]->method,
                 $route[0]->path,
                 $route[0]->className . "#" . $route[0]->classMethod,
                 $route[0]->name

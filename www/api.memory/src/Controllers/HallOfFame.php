@@ -12,11 +12,22 @@ namespace Memory\Controllers;
 use Memory\Common\Controller\Controller;
 use Memory\Common\Http\Response\Response;
 use Memory\Common\Http\Response\JsonResponse;
+use Memory\Service\GamerService;
+use Memory\Common\Http\Request\Request;
+use Memory\Entity\Gamer;
 
 class HallOfFame extends Controller {
 
+    /**
+     * Service for Gamer entity management
+     * @var Memory\Service\GamerService
+     * 
+     * @todo Better inject the service in the Constructor method
+     */
+    private $gamerService;
+    
     public function __construct() {
-        
+        $this->gamerService = new GamerService();
     }
     
     /**
@@ -31,16 +42,7 @@ class HallOfFame extends Controller {
     public function getAll(): Response {
         
         return new JsonResponse(
-            [
-                [
-                    "name" => "Jean-Luc",
-                    "time" => "00:07:53"
-                ],
-                [
-                    "name" => "Clélie",
-                    "time" => "00:08:03"
-                ]
-            ]
+            $this->gamerService->all()
         );
     }
     
@@ -49,10 +51,19 @@ class HallOfFame extends Controller {
      * 
      * @return Response
      */
-    public function add(): Response {
+    public function add(Request $request): Response {
+        $gamer = new Gamer();
+        $gamer->setName($request->body->get("name"));
+        
+        $gamer = $this->gamerService->save($gamer);
+        
         return new JsonResponse(
             [
-                "message" => "Player was added"
+                "message" => "Player was added",
+                "payload" => [
+                    "id" => $gamer->getId(),
+                    "name" => $gamer->getName()
+                ]
             ]
         );
     }

@@ -52,6 +52,7 @@ final class Kernel
             $controllerName = $parseTarget[0]; // Target found
             $controllerMethod = $parseTarget[1];
             $params = $matchingRequest["params"]; // Params to pass to
+            $params["request"] = $this->request;
             $name = $matchingRequest["name"];
             
             

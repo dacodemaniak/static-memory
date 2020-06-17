@@ -49,8 +49,6 @@ class Request {
        $this->query = new HttpQueryString;
        $this->post = new HttpPost();
        $this->body = new HttpBody();
-       
-       
     }
     
     /**

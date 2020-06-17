@@ -18,7 +18,7 @@ class AltoRoute {
      * Route Http Method
      * @var string
      */
-    public $httpMethod;
+    public $method;
     
     /**
      * Full qualified class name handled
@@ -47,7 +47,7 @@ class AltoRoute {
     public function __construct(string $className, string $classMethod) {
         $this->path = "/";
         $this->name = "/home";
-        $this->httpMethod = "GET";
+        $this->method = "GET";
         
         $this->className = $className;
         $this->classMethod = $classMethod;
