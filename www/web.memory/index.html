@@ -29,7 +29,7 @@
                             <a class="my-upper bold" role="button" newGame href="#" title="New Memory Game">New game</a>
                         </li>
                         <li>
-                            <a class="my-upper bold" role="button" href="#" title="Best players">Best players</a>
+                            <a class="my-upper bold" role="button" bestPlayers href="#" title="Best players">Best players</a>
                         </li>
                     </ul>
                 </div>
@@ -80,7 +80,7 @@
         </div>
 
         <!-- Hall of Fame form -->
-        <div class="form-loader">
+        <div class="form-loader hidden">
             <form class="registration">
                   <div class="row">
                     <div class="input-field col s12">
@@ -97,6 +97,15 @@
                     </div>
                 </div>
             </form>
+        </div>
+
+        <!-- Best Players -->
+        <div class="best-players-loader hidden">
+            <div class="best-players">
+                <h2>Best Players</h2>
+                <ul class="collection" hallOfFame>
+                </ul>
+            </div>
         </div>
     </body>
 </html>

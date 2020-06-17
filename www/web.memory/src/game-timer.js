@@ -12,7 +12,7 @@ import Toast from './toast'
 
 export default class GameTimer {
     constructor() {
-        this._maxTime = 2 // Max time to play, in minute
+        this._maxTime = 10 // Max time to play, in minute
         this._endTime = null;
         this._beginTime = null;
         this._elapsedTime = 0;

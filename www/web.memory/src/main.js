@@ -9,6 +9,7 @@ import Platform from './platform'
 
 // Load SCSS at transpile time
 import css from './scss/main.scss'
+import BestPlayers from './best-players'
 
 class Main {
     constructor() {
@@ -28,6 +29,16 @@ class Main {
             (event) => {
                 event.preventDefault()
                 this.start()
+            }
+        )
+
+        // Sets the event handler on Menu Item to load Best Player list
+        $('[bestPlayers]').on(
+            'click',
+            (event) => {
+                event.preventDefault()
+                // Make an instance of BestPlayers class
+                new BestPlayers()
             }
         )
     }

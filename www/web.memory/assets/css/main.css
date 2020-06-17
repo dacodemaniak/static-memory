@@ -124,6 +124,29 @@ progress[value] {
       .form-loader form {
         width: 100%; } }
 
+/**
+* Best players loader
+**/
+.best-players-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.5); }
+  .best-players-loader.hidden {
+    display: none; }
+  .best-players-loader .best-players {
+    position: relative;
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%); }
+    @media screen and (max-width: 768px) {
+      .best-players-loader .best-players {
+        width: 100%; } }
+
 .materialize-red {
   background-color: #e51c23 !important; }
 

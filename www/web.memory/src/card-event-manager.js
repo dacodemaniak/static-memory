@@ -84,7 +84,6 @@ export default class CardEventManager {
 
                     // Then... Show dialog to register... or not
                     const formManager = new FormManager() // FormManager instanciation
-
                 }
             } else {
                 // Turn off cards after delay
