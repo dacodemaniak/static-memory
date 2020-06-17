@@ -31,11 +31,22 @@ class GamerService {
     }
     
     /**
-     * Return all gamers from the database
+     * Return all last five gamers from the database
      * @return array
      */
     public function all(): array {
-        return $this->repository->findAll();
+        $gamers = $this->repository->lastGamers();
+        
+        $array = [];
+        
+        foreach($gamers as $gamer) {
+            $array[] = [
+                "id" => $gamer->getId(),
+                "name" => $gamer->getName()
+            ];
+        }
+        
+        return $array;
     }
     
     public function save(Gamer $gamer): Gamer {

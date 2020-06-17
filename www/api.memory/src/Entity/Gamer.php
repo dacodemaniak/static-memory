@@ -8,11 +8,12 @@ namespace Memory\Entity;
  * @category Entity
  * @abstract Poor entity implementation (with Doctrine support!)
  * 
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass=GamerRepository::class)
  * @ORM\Table(name="gamer")
  */
 
 use Doctrine\ORM\Mapping as ORM;
+use Memory\Repository\GamerRepository;
 
 class Gamer {
 
