@@ -8,7 +8,7 @@ namespace Memory\Entity;
  * @category Entity
  * @abstract Poor entity implementation (with Doctrine support!)
  * 
- * @ORM\Entity(repositoryClass=Memory\Repository\GamerRepository::class)
+ * @ORM\Entity()
  * @ORM\Table(name="gamer")
  */
 
