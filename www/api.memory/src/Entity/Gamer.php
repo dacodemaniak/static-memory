@@ -5,21 +5,32 @@ namespace Memory\Entity;
  * @name Gamer
  * @author IDea Factory (jean-luc.a@ideafactory.fr) - June 2020
  * @version 1.0.0
- * @namespace Memory\Entity
  * @category Entity
- * @abstract Poor entity implementation (without Doctrine support!)
+ * @abstract Poor entity implementation (with Doctrine support!)
+ * 
+ * @ORM\Entity(repositoryClass=Memory\Repository\GamerRepository::class)
+ * @ORM\Table(name="gamer")
  */
+
+use Doctrine\ORM\Mapping as ORM;
+
 class Gamer {
 
     /**
      * ID for the gamer
      * @var int
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
     
     /**
      * Name of the gamer
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $name;
     
