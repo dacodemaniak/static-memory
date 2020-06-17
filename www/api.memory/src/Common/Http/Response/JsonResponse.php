@@ -30,6 +30,7 @@ final class JsonResponse extends HttpResponse {
      */
     public function send(): void {
         $this->sendHeaders();
+        
         http_response_code($this->httpStatus); // Send the HTTP Status Code (default 200)
         
         echo json_encode($this->content);
@@ -41,7 +42,8 @@ final class JsonResponse extends HttpResponse {
      *  Sets the headers to pass through CORS restriction and to send the correct MIME type
      */
     protected function setHeaders(): void {
-        $this->headers["Access-Control-Origin"] = "*";
+        //$this->headers["Access-Control-Origin"] = "*";
+        $this->headers["Access-Control-Allow-Origin"] = "*";
         $this->headers["Content-Type"] = "application/json; charset=utf-8";
     }
 }
