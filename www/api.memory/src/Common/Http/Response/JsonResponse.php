@@ -42,7 +42,7 @@ final class JsonResponse extends HttpResponse {
      */
     protected function setHeaders(): void {
         $this->headers["Access-Control-Origin"] = "*";
-        $this->headers["content-type"] = "application/json; charset=utf-8";
+        $this->headers["Content-Type"] = "application/json; charset=utf-8";
     }
 }
 

@@ -7,6 +7,7 @@
  import $ from 'jquery'
 import GameTimer from './game-timer'
 import Toast from './toast';
+import FormManager from './form-manager';
 
 export default class CardEventManager {
     constructor(timer) {
@@ -39,7 +40,8 @@ export default class CardEventManager {
 
     /**
      * Process Card reveal
-     * @param {*} element 
+     * @param {*} element
+     * @todo Prefer async / await for the FormManager instead of poor synchron implementation
      */
     _addCard(element) {
         // Reveal the element clicked
@@ -75,9 +77,14 @@ export default class CardEventManager {
                     this._timer.stop() // Stop the timer
                     // Play a congrats
                     const toast = new Toast({
-                        content: "Bravo, vous avez gagné la partie !"
+                        content: "Congrats... You win!"
                     })
+                    // @todo prefer async / await or simple promise to wait for toast closing
                     toast.show()
+
+                    // Then... Show dialog to register... or not
+                    const formManager = new FormManager() // FormManager instanciation
+
                 }
             } else {
                 // Turn off cards after delay

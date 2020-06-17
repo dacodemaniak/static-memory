@@ -26,7 +26,7 @@ class HallOfFame extends Controller {
      * )
      * 
      * Get all entries for the Hall of Fame entity
-     * @todo change array return type to Response
+     * @return Response
      */
     public function getAll(): Response {
         
@@ -47,8 +47,7 @@ class HallOfFame extends Controller {
     /**
      * @AltoRoute(path="/halloffame", name="add_halloffame", method="POST")
      * 
-     * @return array
-     * @todo change array return type to Response
+     * @return Response
      */
     public function add(): Response {
         return new JsonResponse(
