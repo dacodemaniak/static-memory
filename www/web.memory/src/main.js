@@ -28,7 +28,8 @@ class Main {
             'click',
             (event) => {
                 event.preventDefault()
-                this.start()
+                app = new Main()
+                app.start()
             }
         )
 
