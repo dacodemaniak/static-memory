@@ -23,16 +23,6 @@ class Main {
     start() {
         this.gamePlatform.start()
 
-        // Sets and Event Handler on the Menu Item to load a new game
-        $('[newGame]').on(
-            'click',
-            (event) => {
-                event.preventDefault()
-                app = new Main()
-                app.start()
-            }
-        )
-
         // Sets the event handler on Menu Item to load Best Player list
         $('[bestPlayers]').on(
             'click',
