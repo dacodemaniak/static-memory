@@ -13,3 +13,6 @@ datas
 
 # Logs
 logs
+
+# Poor MacOS thubnail cache
+.DS_Store
