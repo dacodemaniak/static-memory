@@ -11,6 +11,7 @@ namespace Memory\Common\Http\Response;
  */
 
 use Memory\Common\Http\Response\Response;
+use Memory\Common\Http\Cors\CorsConfiguration;
 
 abstract class HttpResponse implements Response {
 
@@ -41,6 +42,16 @@ abstract class HttpResponse implements Response {
      * Send specified Http Headers, fallback to text/html if not
      */
     protected function sendHeaders() {
+        $corsHeaders = CorsConfiguration::getCorsConfiguration();
+
+        // Merge cors with existing headers
+        foreach($corsHeaders as $header => $value) {
+            if (!array_key_exists($header, $this->headers)) {
+                $this->headers[$header] = $value;
+            }
+        }
+
+        // Send response headers
         if ($this->headers && count($this->headers)) {
             foreach ($this->headers as $header => $content) {
                 header($header . ": " . $content);
