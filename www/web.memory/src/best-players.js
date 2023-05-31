@@ -29,15 +29,27 @@ export default class BestPlayers {
             method: 'get',
             dataType: 'json',
             success: (response) => {
-                // Response contains datas we want to traverse
+                // Response contains datas we want to loop through
                 const ul = $('[hallOfFame]');
-                response.forEach((gamer) => {
+                
+                // Maybe any winner at this time...
+                if (response.length) {
+                    response.forEach((gamer) => {
+                        const line = $('<li>')
+                        line
+                            .addClass('collection-item')
+                            .html('<strong>' + gamer.name + '</strong>')
+                        line.appendTo(ul)
+                    })
+                } else {
+                    // No data at this time
                     const line = $('<li>')
                     line
                         .addClass('collection-item')
-                        .html('<strong>' + gamer.name + '</strong>')
+                        .html('<strong>If you win, you\'ll appear here next time!</strong>')
                     line.appendTo(ul)
-                })
+                }
+
                 // We can show the support loader
                 $('.best-players-loader').removeClass('hidden')
 
