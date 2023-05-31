@@ -6,6 +6,7 @@
 import $ from 'jquery'
 import * as materialize from 'materialize-css'
 import Platform from './platform'
+import config from './config-APP_TARGET';
 
 // Load SCSS at transpile time
 import css from './scss/main.scss'
@@ -13,6 +14,7 @@ import BestPlayers from './best-players'
 
 class Main {
     constructor() {
+        console.log(config.devMode)
         this.gamePlatform = new Platform()
     }
 
