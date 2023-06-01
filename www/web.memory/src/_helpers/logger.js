@@ -1,3 +1,4 @@
+import config from './../config-APP_TARGET';
 export class Logger {
     constructor() {
       // Setup standard styles
@@ -21,35 +22,31 @@ export class Logger {
 
 
     static info(message) {
-      if (!environment.production) {
         const style = Logger._getStyles(Logger.styles.info)
         Logger._log(message, style)
-      }
     }
 
     static warning(message) {
-      if (!environment.production) {
         const style = Logger._getStyles(Logger.styles.warning)
         Logger._log(message, style)
-      }
     }
 
     static error(message) {
-      if (!environment.production) {
         const style = Logger._getStyles(Logger.styles.error)
         Logger._log(message, style)
-      }
     }
 
     static _log(message, styles) {
-      const now = new Date();
-  
-      let fullMessage = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} : %c${message}`;
-      
-      console.log(
-        fullMessage,
-        style
-      );
+      if (config.devMode) {
+        const now = new Date();
+    
+        let fullMessage = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} : %c${message}`;
+        
+        console.log(
+          fullMessage,
+          style
+        );
+      }
     }
     static _getStyles(styleType) {
         let style = this.styles.base.join(';') + ';';
