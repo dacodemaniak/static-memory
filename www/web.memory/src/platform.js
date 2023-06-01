@@ -12,7 +12,7 @@ import GameTimer from './game-timer'
 
 export default class Platform {
     constructor() {
-        this._platform = $('#platform') // document.getElementById('platform')
+        this._platform = document.getElementById('platform')
         this._cards = []; // Sequential cards
         this._createCards()
         this._randomCards = []; // Shuffled cards
