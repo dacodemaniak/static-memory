@@ -3,8 +3,6 @@
  * @author Aélion - June 2020
  * @abstract Sets event manager for cards in the platform
  */
-
- import $ from 'jquery'
 import GameTimer from './game-timer'
 import Toast from './toast';
 import FormManager from './form-manager';

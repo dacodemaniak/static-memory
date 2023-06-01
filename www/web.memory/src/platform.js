@@ -3,7 +3,6 @@
  * @author Aélion - June 2020
  * @abstract Set cards on the platform
  */
-import $ from 'jquery'
 
 // Import Card Event Manager
 import CardEventManager from './card-event-manager'

@@ -5,8 +5,6 @@
  * @abstract Query backend to load last 5 players if ever and show that list
  */
 
- import $ from 'jquery'
-
 export default class BestPlayers {
     constructor() {
         /**

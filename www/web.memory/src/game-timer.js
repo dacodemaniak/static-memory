@@ -6,7 +6,6 @@
 
 // Import helpful moment library to make date and time computation easier
 import * as moment from 'moment'
-import $ from 'jquery'
 
 import Toast from './toast'
 

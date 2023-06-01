@@ -4,8 +4,6 @@
  * @version 1.0.0
  * @abstract Simple toast sample
  */
-import $ from 'jquery'
-
 export default class Toast {
 
     constructor(options) {
