@@ -3,7 +3,6 @@
  * @author Aélion - June 2020
  * @abstract Set cards on the platform
  */
-import $ from 'jquery'
 
 // Import Card Event Manager
 import CardEventManager from './card-event-manager'
@@ -13,7 +12,7 @@ import GameTimer from './game-timer'
 
 export default class Platform {
     constructor() {
-        this._platform = $('#platform') // document.getElementById('platform')
+        this._platform = document.getElementById('platform')
         this._cards = []; // Sequential cards
         this._createCards()
         this._randomCards = []; // Shuffled cards

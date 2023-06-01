@@ -5,8 +5,6 @@
  * @abstract Manager registration form simple implementation
  */
 
- import $ from 'jquery'
-
  export default class FormManager {
      constructor() {
          this._loader = $('.form-loader')

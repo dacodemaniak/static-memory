@@ -1,25 +1,22 @@
 import config from './../config-APP_TARGET';
-export class Logger {
-    constructor() {
-      // Setup standard styles
-      this.styles = {
-        base: [
-          "color: #fff",
-          "background-color: #444",
-          "padding: 2px 2px"
-        ],
-        warning: [
-          "background-color: rgb(150, 25, 10)",
-        ],
-        error: [
-          "background-color: rgb(200, 10, 10)",
-        ],
-        info: [
-          "background-color: rgb(10, 10, 200)",
-        ]
-      }
+export default class Logger {
+    // Setup standard styles
+    static styles = {
+      base: [
+        "color: #fff",
+        "background-color: #444",
+        "padding: 2px 2px"
+      ],
+      warning: [
+        "background-color: rgb(150, 25, 10)",
+      ],
+      error: [
+        "background-color: rgb(200, 10, 10)",
+      ],
+      info: [
+        "background-color: rgb(10, 10, 200)",
+      ]
     }
-
 
     static info(message) {
         const style = Logger._getStyles(Logger.styles.info)
@@ -44,13 +41,14 @@ export class Logger {
         
         console.log(
           fullMessage,
-          style
+          styles
         );
       }
     }
+    
     static _getStyles(styleType) {
-        let style = this.styles.base.join(';') + ';';
-        style += this.styles.info.join(';');
+        let style = Logger.styles.base.join(';') + ';';
+        style += styleType.join(';');
     
         return style;
       }
