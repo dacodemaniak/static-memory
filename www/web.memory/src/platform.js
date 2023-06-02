@@ -82,12 +82,12 @@ export default class Platform {
                 .addClass('col')
                 .addClass('s2')
                 .append(this._randomCards[i])
-            row.append(outerCard);
+            row.append(outerCard.build());
         }
         setTimeout(
             () => {
                 document.querySelector('.outer-loader').classList.add('hidden') 
-                this._platform.appendChild(row);
+                this._platform.appendChild(row.build());
                 this._timer.start()
             },
             500

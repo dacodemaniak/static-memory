@@ -4,6 +4,8 @@
  * @version 1.0.0
  * @abstract Simple toast sample
  */
+
+import CardBuilder from "./_builders/card-builder"
 export default class Toast {
 
     constructor(options) {

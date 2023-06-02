@@ -94,7 +94,7 @@ export default class CardEventManager {
                 // Turn off cards after delay
                 setTimeout(
                     () => {
-                        Logger.info(`Hide current card : ${element.attr('data-rel')}`)
+                        Logger.info(`Hide current card : ${element.getAttribute('data-rel')}`)
                         element
                             .classList.remove('flip-in')
                         element
