@@ -4,8 +4,9 @@
  * @abstract Sets event manager for cards in the platform
  */
 import GameTimer from './game-timer'
-import Toast from './toast';
-import FormManager from './form-manager';
+import Toast from './toast'
+import FormManager from './form-manager'
+import Logger from './_helpers/logger'
 
 export default class CardEventManager {
     constructor(timer) {
@@ -20,20 +21,21 @@ export default class CardEventManager {
      * Click event Manager using event delegation to manage cards reveal
      */
     _click() {
-        $('#platform').on(
-            'click',
-            '.m-card', // Event delegation needed to perform actions
-            (event) => {
-                console.log('Detect click on card')
-                const element = $(event.target) // Real element clicked (The Card)
-                if (element.hasClass('hidden-face')) {
-                    console.log(`Reveal ${element.attr('data-rel')}`)
-                    this._addCard(element)
-                } else {
-                    this._removeCard(element)
-                }
+        const _platform = document.getElementById('platform')
+        _platform.onclick = (event) => {
+            const _card = event.target.closest('.m-card')
+            
+            if (!_card) return // Nope if not a card
+
+            Logger.info('Click on card was detected')
+
+            if (_card.classList.contains('hidden-face')) {
+                Logger.info(`Reveal ${_card.getAttribute('data-rel')}`)
+                this._addCard(_card)
+            } else {
+                this._removeCard(_card)
             }
-        )
+        }
     }
 
     /**
@@ -44,29 +46,34 @@ export default class CardEventManager {
     _addCard(element) {
         // Reveal the element clicked
         element
-            .addClass('flip-out')
+            .classList.add('flip-out')
         
         setTimeout(
             () => {
                 element
-                    .removeClass('hidden-face')
-                    .removeClass('flip-out')
-                    .addClass('flip-in')
+                    .classList.remove('hidden-face')
+                element
+                    .classList.remove('flip-out')
+                element
+                    .classList.add('flip-in')
             },
             500
         )
         if (this._playingCard !== null) {
-            console.log('A card was previously played')
+            Logger.info('A card was previously played')
             // Some cards was played, try to know if both are same
-            if (element.attr('data-rel') === this._playingCard.attr('data-rel')) {
+            if (element.getAttribute('data-rel') === this._playingCard.getAttribute('data-rel')) {
                 // Pair was found... So freeze cards
                 this._pairs++;
                 element
-                    .addClass('freezed-card')
-                    .removeClass('m-card')
+                    .classList.add('freezed-card')
+                element
+                    .classList.remove('m-card')
+
                 this._playingCard
-                    .addClass('freezed-card')
-                    .removeClass('m-card')
+                    .classList.add('freezed-card')
+                this._playingCard
+                    .classList.remove('m-card')
                 // Sets played card as null, to make another pick
                 this._playingCard = null;
 
@@ -87,14 +94,16 @@ export default class CardEventManager {
                 // Turn off cards after delay
                 setTimeout(
                     () => {
-                        console.log(`Hide current card : ${element.attr('data-rel')}`)
+                        Logger.info(`Hide current card : ${element.attr('data-rel')}`)
                         element
-                            .removeClass('flip-in')
-                            .addClass('hidden-face')
-                        console.log(` Hide played card : ${this._playingCard.attr('data-rel')}`)
+                            .classList.remove('flip-in')
+                        element
+                            .classList.add('hidden-face')
+                        Logger.info(` Hide played card : ${this._playingCard.attr('data-rel')}`)
                         this._playingCard
-                            .removeClass('flip-in')
-                            .addClass('hidden-face')
+                            .classList.remove('flip-in')
+                        this._playingCard
+                            .classList.add('hidden-face')
                         // Don't forget to empty the played card
                         this._playingCard = null;
                     },
@@ -103,7 +112,7 @@ export default class CardEventManager {
             }
         } else {
             // Store clicked card... and wait for next card
-            console.log(`Store ${element.attr('data-rel')} as played card`)
+            Logger.info(`Store ${element.getAttribute('data-rel')} as played card`)
             this._playingCard = element;
         }
     }
@@ -114,8 +123,9 @@ export default class CardEventManager {
      */
     _removeCard(element) {
         element
-            .addClass('hidden-face')
-            .removeClass('flip-in')
+            .classList.add('hidden-face')
+        element
+            .classList.remove('flip-in')
         this._playingCard = null;
     }
 }
