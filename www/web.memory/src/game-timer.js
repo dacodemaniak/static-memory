@@ -6,8 +6,7 @@
 
 // Import helpful moment library to make date and time computation easier
 import * as moment from 'moment'
-import $ from 'jquery'
-
+import Logger from './_helpers/logger'
 import Toast from './toast'
 
 export default class GameTimer {
@@ -16,7 +15,7 @@ export default class GameTimer {
         this._endTime = null;
         this._beginTime = null;
         this._elapsedTime = 0;
-        this._progress = $('progress');
+        this._progress = document.querySelector('progress');
         this._timer = null;
     }
 
@@ -30,8 +29,8 @@ export default class GameTimer {
         this._endTime.add(this._maxTime, 'minutes')
 
         // Sets the max value of the progress bar in seconds
-        this._progress.attr('max', 60 * this._maxTime)
-        this._progress.attr('value', this._elapsedTime)
+        this._progress.setAttribute('max', 60 * this._maxTime)
+        this._progress.setAttribute('value', this._elapsedTime)
 
         // Sets the progress animation progression
         this._init()
@@ -53,17 +52,19 @@ export default class GameTimer {
         this._timer = setInterval(
             () => {
                 this._elapsedTime++;
-                this._progress.attr('value', this._elapsedTime)
+                this._progress.setAttribute('value', this._elapsedTime)
                 if (this._elapsedTime > (60 * this._maxTime)) {
-                    console.log('You loose the game');
+                    Logger.info('You loose the game');
                     this._elapsedTime = 0
                     // Game was loosed...
                     this.stop() // Stop the interval manager
                     
                     // Redraw all cards
-                    $('.m-card')
-                        .removeClass('m-card')
-                        .addClass('freezed-card')
+                    const _cards = document.querySelectorAll('.m-card')
+                    _cards.forEach((card) => {
+                        card.classList.add('freezed-card')
+                        card.classList.remove('m-card')
+                    })
 
                     // Send a toast to the user
                     const toast = new Toast({
