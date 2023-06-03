@@ -5,6 +5,7 @@
  */
 
 // Import Card Event Manager
+import CardBuilder from './_builders/card-builder';
 import CardEventManager from './card-event-manager'
 
 // Import the timer class
@@ -41,7 +42,7 @@ export default class Platform {
                 offset = i
             }
             // Create a card in DOM
-            const card = $('<div>')
+            const card = new CardBuilder()
             card
                 .addClass('m-card')
                 .addClass('hidden-face')
@@ -49,7 +50,7 @@ export default class Platform {
                 .attr('data-value', oddOrEven)
                 .css('background-position', '0 -' + offset * 100 + 'px')
             // Add card Element to array
-            this._cards.push(card) // Add a card to sequential array
+            this._cards.push(card.build()) // Add a card to sequential array
         }        
     }
     _shuffleCard() {
@@ -71,23 +72,23 @@ export default class Platform {
     }
 
     _displayCards() {
-        let row = $('<div>')
-            .addClass('row');
+        let row = new CardBuilder()
+        row.addClass('row')
 
         for (let i = 0; i < 36; i++) {
-            const outerCard = $('<div>')
-                .addClass('outer-card')
+            const outerCard = new CardBuilder()
+                
+            outerCard.addClass('outer-card')
                 .addClass('col')
                 .addClass('s2')
                 .append(this._randomCards[i])
-            row.append(outerCard);
+            row.append(outerCard.build());
         }
         setTimeout(
-            () => { 
-                $('.outer-loader').addClass('hidden')
-                this._platform.append(row);
+            () => {
+                document.querySelector('.outer-loader').classList.add('hidden') 
+                this._platform.appendChild(row.build());
                 this._timer.start()
-
             },
             500
         )

@@ -5,9 +5,14 @@
  * @abstract Manager registration form simple implementation
  */
 
+import DomHelper from "./_helpers/dom-helper"
+import HttpClient from "./_http/http-client"
+
  export default class FormManager {
      constructor() {
-         this._loader = $('.form-loader')
+        const domHelper = DomHelper.byClassName('form-loader')
+
+        this._loader = domHelper.get()
 
         this._init()
      }
@@ -16,13 +21,15 @@
       * Initiate form manager
       */
      _init() {
-         this._loader.removeClass('hidden')
+         this._loader.classList.remove('hidden')
 
          // Place event handlers
      }
 
      _manage(event) {
-        const field = $('#name') // Get the support form field object
+        const domHelper = DomHelper.byId('name')
+
+        const field = domHelper.get() // Get the support form field object
 
         // Check if full filled
         if (field.val().toString().trim().length > 0) {
@@ -31,21 +38,12 @@
             const data = {
                 name: field.val().toString().trim()
             }
-            $.ajax({
-                url: uri,
-                method: 'post',
-                dataType: 'json',
-                data : data,
-                success: (response) => {
-                    
-                },
-                error: (XHR, status, error) => {
 
-                },
-                complete: () => { // After success or error handling
-                    this._close()
-                }
-            })
+            const httpClient = new HttpClient()
+            httpClient.post(uri, data)
+                .then((response) => response.json())
+                .then((data) => {this._close()})
+                .catch((error) => { this._close()})
         }
      }
 
@@ -53,25 +51,23 @@
       * Set register click handler
       */
      _register() {
-         $('[register]').on(
-             'click',
-             (event) => this._manage(event)
-         )
+        document.querySelector(`['register]`).addEventListener(
+            'click',
+            (event) => this._manage(event)
+        )
      }
 
      /**
       * Set decline click handler
       */
      _decline() {
-         $('[decline]').on(
-             'click',
-             (event) => {
-                 this._close()
-             }
-         )
+        document.querySelector(`['decline']`).addEventListener(
+            'click',
+            (event) => this._close()
+        )
      }
 
      _close() {
-         this._loader.addClass('hidden')
+         this._loader.classList.add('hidden')
      }
  }

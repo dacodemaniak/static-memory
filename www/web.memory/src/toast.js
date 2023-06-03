@@ -4,6 +4,8 @@
  * @version 1.0.0
  * @abstract Simple toast sample
  */
+
+import CardBuilder from "./_builders/card-builder"
 export default class Toast {
 
     constructor(options) {
@@ -21,7 +23,7 @@ export default class Toast {
     }
 
     show() {
-        $('#platform').append(this._toast)
+        document.getElementById('platform').appendChild(this._toast)
         setTimeout(
             () => {
                 this._toast.remove()
@@ -31,12 +33,13 @@ export default class Toast {
     }
 
     _build() {
-        this._toast = $('<div>')
-        this._toast
+        const _toast = new CardBuilder()
+        _toast
             .addClass('m-toast')
             .addClass(this._options.type)
             .css('height', this._options.height)
             .css('width', this._options.width)
             .html(this._options.content)
+        this._toast = _toast._build()
     }
 }
